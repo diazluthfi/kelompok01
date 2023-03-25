@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Destinasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   </head>
   <body>
    
@@ -46,16 +47,21 @@
               <td>{{$row->user->name}}</td>
               <td>{{$row->created_at->diffForHumans()}}</td>
               <td>
-                <a href="{{route('images.index', ['id' => $row->id])}}" class="btn btn-primary">
+                <a href="{{route('images.index', ['id' => $row->id])}}" class="btn btn-secondary">
                   <i class="fa fa-image"></i>
                 </a>
                </td>
                <td><a href="{{ route ('destinasi.edit', $row->id)}}" type="button" class="btn btn-success">Update</a>
+                
+                
+                @if (Auth::user()->role=='admin')
                 <button type="button" class="btn btn-danger" onclick="document.getElementById('form-{{$row->id}}').submit()">Hapus</button> 
                 <form id="form-{{$row->id}}" action="{{ route('destinasi.delete', $row->id) }}" method="POST">
                   @csrf
                   @method('delete')
                 </form>
+                @endif
+                
              
                </td>
                

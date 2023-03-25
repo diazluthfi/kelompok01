@@ -38,7 +38,7 @@ class AuthController extends Controller
         ];
 
         $isSuccessLogin = Auth::attempt($data);
-
+        
         if ($isSuccessLogin){
             return redirect()->route('destinasi.show');
         }
