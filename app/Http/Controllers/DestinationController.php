@@ -76,7 +76,7 @@ class DestinationController extends Controller
         return redirect()->route('destinasi.show');
     }
 
-    public function image($id){
+    public function images($id){
         $images = image::where('type', 'destination')->where('parent_id', $id)->get();
 
         return view('destinasi.images.index', compact('id', 'images'));
@@ -100,7 +100,7 @@ class DestinationController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('dashboard.destination.images.create', $id)
+                ->route('images.create', $id)
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -108,7 +108,7 @@ class DestinationController extends Controller
         $file = $request->file('berkas');
         $name = $file->hashName();
 
-        Storage::disk('tourismImage')->put('', $file);
+        Storage::disk('public')->put('tourismimages', $file);
 
         Image::create([
             'type' => 'destination',
@@ -116,7 +116,7 @@ class DestinationController extends Controller
             'path' => $name,
         ]);
 
-        return redirect()->route('destinasi.images.index', $id);
+        return redirect()->route('images.index', $id);
     }
 
 

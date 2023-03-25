@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('', [DestinationController::class, 'storeImage'])->name('store');
         
     });
-
+    Route::get('/kuliner/create', [KulinerController::class, 'tambahkuliner'])->name('kuliner.tambah');
     Route::get('/kuliner/kuliner', [KulinerController::class, 'show'])->name('kuliner.show');
 });
 

@@ -53,9 +53,7 @@
             <div class="accordion-box">
                 <button class="accordion">Filter By Region</button>
                 <div class="panel">
-                    @foreach (areas as )
-                        
-                    @endforeach
+                   
                     <label><input type="checkbox" name="region" value="asia">Asia</label>
                     <label><input type="checkbox" name="region" value="europe">Europe</label>
                     <label><input type="checkbox" name="region" value="america">America</label>

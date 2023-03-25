@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>halo
+
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -22,8 +22,6 @@
         <section class="content">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Upload Image</h3>
-    
                     <a href="{{ route('images.index', ['id' => $id]) }}" class="float-right btn btn-sm btn-danger">Cancel</a>
                 </div>
     
@@ -38,7 +36,7 @@
                         </div>
                     @endif
     
-                    <form action="{{ route('destinasi.images.store', ['id' => $id]) }}" method="POST" class="form" enctype="multipart/form-data">
+                    <form action="{{ route('images.store', ['id' => $id]) }}" method="POST" class="form" enctype="multipart/form-data">
                         @csrf
     
                         <div class="form-group">

@@ -11,7 +11,7 @@
         <div class="card">
             <div>
                 <h3>Image List</h3>
-                <a href="{{route('images.create', ['id' => $id])}}"></a>
+                <a href="{{route('images.create', ['id' => $id])}}">tambah image</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
@@ -27,7 +27,7 @@
                       <tr>
                         <td> {{ $key + 1 }} </td>
                         <td>
-                          <img src="{{ asset('tourismImage/' . $image->path) }}" alt="">
+                          <img src="{{ asset('storage/tourismimages/' . $image->path) }}" alt="">
                         </td>
                         <td>
                           <button class="btn btn-danger"><i class="fa fa-trash"></i></button>

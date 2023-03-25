@@ -15,7 +15,7 @@
         <div class="col-8">
           <div class="card">
             <div class="card-body">
-            <form action="{{ route('destinasi.tambah') }}" method="POST">
+            <form action="{{ route('kuliner.tambah') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
