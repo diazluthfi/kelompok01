@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\KulinerController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,15 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/home', function () {return view('home');})->name('home');
 Route::get('/pagedestinasi', [DestinationController::class, 'lihat'])->name('pagedestinasi');
 
+Route::prefix('admin')->middleware(['auth','apakahadmin'])->group(function () {
+   Route::get('', function(){
+    return view('admin.index');
+   });
+});
+
+Route::prefix('member')->middleware(['auth'])->group(function () {
+   
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/destinasi/create', [DestinationController::class, 'create'])->name('destinasi.create');
@@ -39,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/destinasi', [DestinationController::class, 'show'])->name('destinasi.show');
     Route::get('/destinasi/{id}', [DestinationController::class, 'edit'])->name('destinasi.edit');
     Route::put('/destinasi/{id}', [DestinationController::class, 'update'])->name('destinasi.update');
-    Route::delete('/destinasi/{id}', [DestinationController::class, 'delete'])->name('destinasi.delete');
+    Route::delete('/destinasi/{id}', [DestinationController::class, 'delete'])->middleware('apakahadmin')->name('destinasi.delete');
 
 
     Route::prefix('destinasi/images/{id}')->name('images.')->group(function () {
