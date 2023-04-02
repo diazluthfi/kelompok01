@@ -18,6 +18,6 @@ class ImageController extends Controller
             ]
             );
 
-            return redirect()->route('destinasi.show');
+            return redirect()->route('dashboard.destinasi.images.index');
     }
 }

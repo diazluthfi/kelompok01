@@ -20,4 +20,7 @@ class destination extends Model
     public function user(){
         return $this->belongsTo(user::class,'user_id');
     }
+    public function area(){
+        return $this->belongsTo(area::class,'area_id');
+    }
 }

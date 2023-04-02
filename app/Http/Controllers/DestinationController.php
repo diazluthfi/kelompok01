@@ -17,7 +17,7 @@ class DestinationController extends Controller
     public function create(){
         $areas = area::select('id','name')->get();
         
-        return view('destinasi.create', compact('areas'));
+        return view('dashboard.destinasi.create', compact('areas'));
     }
 
     // fungsi untuk menyimpan destinasi ke db
@@ -25,23 +25,23 @@ class DestinationController extends Controller
         
         
         $destinationService->create($request);
-            return redirect()->route('destinasi.show');
+            return redirect()->route('dashboard.destinasi.index');
     }
 
     //menampilkan semua data destinasi
-    public function show()
+    public function index()
     {
         $destinations = destination::with('user')->get();
         
         // return $destinations;
-        return view('destinasi.datadestinasi', compact('destinations'));
+        return view('dashboard.destinasi.index', compact('destinations'));
         
     }
 
     public function lihat(){
         $destinations = destination::with('user')->get();
         
-        return view('pagedestinasi', compact('destinations'));
+        return view('dashboard.destinasi.index', compact('destinations'));
     }
 
 
@@ -49,7 +49,7 @@ class DestinationController extends Controller
     public function edit($id){
         $destinations = destination::find($id);
         // return $destinations;
-        return view('destinasi.edit', compact('destinations'));
+        return view('dashboard.destinasi.edit', compact('destinations'));
     }
 
     //funsi untuk update data
@@ -60,7 +60,7 @@ class DestinationController extends Controller
             'address_url' => $request->address_url,
             'description'=>$request->description,
         ]);
-        return redirect()->route('destinasi.show');
+        return redirect()->route('dashboard.destinasi.index');
     }
 
     // proses delete data destinasi
@@ -69,21 +69,21 @@ class DestinationController extends Controller
         $destinations = destination::find($id);
 
         if (! $destinations) {
-            return redirect()->route('destinasi.show')->with('error', 'data tidak ditemukan');
+            return redirect()->route('dashboard.destinasi.index')->with('error', 'data tidak ditemukan');
         }
 
         $destinations->delete();
-        return redirect()->route('destinasi.show');
+        return redirect()->route('dashboard.destinasi.index');
     }
 
     public function images($id){
         $images = image::where('type', 'destination')->where('parent_id', $id)->get();
 
-        return view('destinasi.images.index', compact('id', 'images'));
+        return view('dashboard.destinasi.images.index', compact('id', 'images'));
     }
     public function createImage($id)
     {
-        return view('destinasi.images.create', compact('id'));
+        return view('dashboard.destinasi.images.create', compact('id'));
     }
 
     public function storeImage($id, Request $request)
@@ -100,7 +100,7 @@ class DestinationController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('images.create', $id)
+                ->route('dashboard.destinasi.images.create', $id)
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -116,7 +116,7 @@ class DestinationController extends Controller
             'path' => $name,
         ]);
 
-        return redirect()->route('images.index', $id);
+        return redirect()->route('dashboard.destinasi.images.index', $id);
     }
 
 
