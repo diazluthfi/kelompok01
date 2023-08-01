@@ -31,7 +31,7 @@
           <a href="{{route('register')}}">Sign Up</a>
             
         </div>
-    
+        
         <div id="menu-btn" class="fa fa-bars"></div>
     
         </nav>

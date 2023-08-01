@@ -23,11 +23,17 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <style>
+                      img {
+                        height: 35%;
+                        width: 35%;
+                      }
+                    </style>
                     @foreach ($images as $key => $image)
                       <tr>
                         <td> {{ $key + 1 }} </td>
                         <td>
-                          <img src="{{ asset('storage/tourismimages/' . $image->path) }}" alt="">
+                          <img style="" src="{{ asset('storage/tourismimages/' . $image->path) }}" alt="">
                         </td>
                         <td>
                           <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
